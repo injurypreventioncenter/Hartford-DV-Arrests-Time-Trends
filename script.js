@@ -88,7 +88,7 @@ info.onAdd = function (map) {
 info.update = function (props) {
   var winName =
   this._div.innerHTML = (props ?
-    '<div class="areaName">' + props.name + '</div>' : '<div class="areaName faded"><small>Hover over areas<br>Click arrow keys<br>Note: 2011 data from Sept-Jan, 2016 data from Jan-Sept</small></div>') + '<div class="areaLabel"><div class="areaValue">Number of Arrests</div>' +(props ? '' + (checkNull(props["index" + year])) : '--') + '</div>';
+    '<div class="areaName">' + props.name + '</div>' : '<div class="areaName faded"><small>Hover over areas<br>Click arrow keys<br>Note: 2011 data from Sept-Jan, 2016 data from Jan-Sept</small></div>') + '<div class="areaLabel"><div class="areaValue">Number of Domestic Violence Arrests</div>' +(props ? '' + (checkNull(props["index" + year])) : '--') + '</div>';
 };
 info.addTo(map);
 
