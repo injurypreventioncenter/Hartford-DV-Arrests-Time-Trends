@@ -5,7 +5,7 @@ var tabs = 6;
 // Edit the center point and zoom level
 var map = L.map('map', {
   center: [41.79, -72.6],
-  zoom: 10,
+  zoom: 7,
   scrollWheelZoom: false
 });
 
@@ -19,7 +19,7 @@ new L.tileLayer('http://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png
 }).addTo(map);
 
 // Edit to upload GeoJSON data file from your local directory
-$.getJSON("joined-year-arrestnum-hartford-neighborhoods.geojson", function (data) {
+$.getJSON("joined-year-arrestnum-hartford-neighborhoods2.geojson", function (data) {
   geoJsonLayer = L.geoJson(data, {
     style: style,
     onEachFeature: onEachFeature
