@@ -1,6 +1,6 @@
 // Edit the initial year and number of tabs to match your GeoJSON data and tabs in index.html
-var year = "1910";
-var tabs = 11;
+var year = "2011";
+var tabs = 6;
 
 // Edit the center point and zoom level
 var map = L.map('map', {
@@ -19,7 +19,7 @@ new L.tileLayer('http://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png
 }).addTo(map);
 
 // Edit to upload GeoJSON data file from your local directory
-$.getJSON("town-home-value-index.geojson", function (data) {
+$.getJSON("joined-year-arrestnum-hartford-neighborhoods.geojson", function (data) {
   geoJsonLayer = L.geoJson(data, {
     style: style,
     onEachFeature: onEachFeature
@@ -29,10 +29,10 @@ $.getJSON("town-home-value-index.geojson", function (data) {
 // Edit range cutoffs and colors to match your data; see http://colorbrewer.org
 // Any values not listed in the ranges below displays as the last color
 function getColor(d) {
-  return d > 2.0 ? '#006d2c' :
-         d > 1.5 ? '#31a354' :
-         d > 1.0 ? '#74c476' :
-         d > 0.5 ? '#bae4b3' :
+  return d > 40 ? '#006d2c' :
+         d > 30 ? '#31a354' :
+         d > 20 ? '#74c476' :
+         d > 10 ? '#bae4b3' :
          d > 0.1 ? '#edf8e9' :
                    'white' ;
 }
@@ -88,7 +88,7 @@ info.onAdd = function (map) {
 info.update = function (props) {
   var winName =
   this._div.innerHTML = (props ?
-    '<div class="areaName">' + props.town + '</div>' : '<div class="areaName faded"><small>Hover over areas<br>Click tabs or arrow keys</small></div>') + '<div class="areaLabel"><div class="areaValue">Home Value Index</div>' +(props ? '' + (checkNull(props["index" + year])) : '--') + '</div>';
+    '<div class="areaName">' + props.name + '</div>' : '<div class="areaName faded"><small>Hover over areas<br>Click tabs or arrow keys</small></div>') + '<div class="areaLabel"><div class="areaValue">Home Value Index</div>' +(props ? '' + (checkNull(props["index" + year])) : '--') + '</div>';
 };
 info.addTo(map);
 
@@ -106,7 +106,7 @@ $(".tabItem").click(function() {
 var legend = L.control({position: 'bottomright'});
 legend.onAdd = function (map) {
   var div = L.DomUtil.create('div', 'info legend'),
-    grades = [0.1, 0.5, 1.0, 1.5, 2],
+    grades = [0.1, 10, 20, 30, 40],
     labels = [],
     from, to;
   for (var i = 0; i < grades.length; i++) {
