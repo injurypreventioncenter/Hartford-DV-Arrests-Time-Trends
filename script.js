@@ -5,7 +5,7 @@ var tabs = 6;
 // Edit the center point and zoom level
 var map = L.map('map', {
   center: [41.79, -72.6],
-  zoom: 7,
+  zoom: 13,
   scrollWheelZoom: false
 });
 
@@ -33,7 +33,7 @@ function getColor(d) {
          d > 30 ? '#31a354' :
          d > 20 ? '#74c476' :
          d > 10 ? '#bae4b3' :
-         d > 0.1 ? '#edf8e9' :
+         d > 0 ? '#edf8e9' :
                    'white' ;
 }
 
@@ -88,7 +88,7 @@ info.onAdd = function (map) {
 info.update = function (props) {
   var winName =
   this._div.innerHTML = (props ?
-    '<div class="areaName">' + props.name + '</div>' : '<div class="areaName faded"><small>Hover over areas<br>Click tabs or arrow keys</small></div>') + '<div class="areaLabel"><div class="areaValue">Home Value Index</div>' +(props ? '' + (checkNull(props["index" + year])) : '--') + '</div>';
+    '<div class="areaName">' + props.name + '</div>' : '<div class="areaName faded"><small>Hover over areas<br>Click tabs or arrow keys</small></div>') + '<div class="areaLabel"><div class="areaValue">Number of Arrests</div>' +(props ? '' + (checkNull(props["index" + year])) : '--') + '</div>';
 };
 info.addTo(map);
 
@@ -106,7 +106,7 @@ $(".tabItem").click(function() {
 var legend = L.control({position: 'bottomright'});
 legend.onAdd = function (map) {
   var div = L.DomUtil.create('div', 'info legend'),
-    grades = [0.1, 10, 20, 30, 40],
+    grades = [0, 10, 20, 30, 40],
     labels = [],
     from, to;
   for (var i = 0; i < grades.length; i++) {
